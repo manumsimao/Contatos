@@ -26,26 +26,10 @@ public class ContatosActivity extends AppCompatActivity {
         setContentView(activityContatosBinding.getRoot());
 
         contatosList = new ArrayList<>();
-        popularContatosList();
 
         contatosAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, contatosList);
 
         activityContatosBinding.contatosLV.setAdapter(contatosAdapter);
-    }
-
-    private void popularContatosList(){
-        for (int i=0; i<20; i++){
-            contatosList.add(
-                    new Contato(
-                            "Nome" +i,
-                            "email"+i+"@gmail.com",
-                            (i%2==0)?"Comercial":"Residencial",
-                            "telefone"+i,
-                            (i%2==0)? true:false,
-                            (i%2==0)? "celular"+i:"",
-                            "www.site"+i+".com.br")
-            );
-        }
     }
 
     @Override
