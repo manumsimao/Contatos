@@ -94,30 +94,8 @@
             android:layout_height="wrap_content"
             android:onClick="onClickButton"
             android:text="Salvar"
-            app:backgroundTint="@color/orange"
+            app:backgroundTint="@color/blue"
             />
-        <Button
-            android:id="@+id/emailBTN"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClickButton"
-            android:text="Enviar email"
-            app:backgroundTint="@color/yellow"
-             />
-        <Button
-            android:id="@+id/ligarBTN"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClickButton"
-            android:text="Ligar"
-            app:backgroundTint="@color/green"/>
-        <Button
-            android:id="@+id/siteBTN"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onClickButton"
-            android:text="Acessar site pessoal"
-            app:backgroundTint="@color/blue" />
         <Button
             android:id="@+id/pdfBTN"
             android:layout_width="match_parent"

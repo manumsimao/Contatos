@@ -15,7 +15,7 @@ import com.ifsp.pdm.emanoela.contatos.databinding.ActivityContatoBinding;
 
 public class ContatoActivity extends AppCompatActivity {
     private ActivityContatoBinding activityContatoBinding;
-    private final int CALL_PHONE_PREMISSION_REQUEST_CODE = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,40 +42,12 @@ public class ContatoActivity extends AppCompatActivity {
                 setResult(RESULT_OK, retornoIntent);
                 finish();
                 break;
-            case R.id.emailBTN:
-                Intent enviarEmailIntent = new Intent(Intent.ACTION_SENDTO);
-                enviarEmailIntent.setData(Uri.parse("mailto:"));
-                enviarEmailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {contato.getEmail()});
-                enviarEmailIntent.putExtra(Intent.EXTRA_SUBJECT, "Contato");
-                enviarEmailIntent.putExtra(Intent.EXTRA_TEXT, contato.toString());
-                startActivity(Intent.createChooser(enviarEmailIntent, "Ops"));
-                break;
-            case R.id.ligarBTN:
-                verifyCallPhonePermission();
-                break;
-            case R.id.siteBTN:
-                Intent abrirNavegadorIntent = new Intent(Intent.ACTION_VIEW);
-                abrirNavegadorIntent.setData(Uri.parse(contato.getSite()));
-                startActivity(Intent.createChooser(abrirNavegadorIntent, "Ops"));
-                break;
             case R.id.pdfBTN:
                 break;
         }
     }
 
-    private void verifyCallPhonePermission() {
-        Intent ligarIntent = new Intent(Intent.ACTION_CALL);
-        ligarIntent.setData(Uri.parse("tel:" + activityContatoBinding.telefoneET.getText().toString()));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-                startActivity(ligarIntent);
-            } else {
-                requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, CALL_PHONE_PREMISSION_REQUEST_CODE);
-            }
-        } else {
-            startActivity(ligarIntent);
-        }
-    }
+
 
     private Contato criarContato () {
         Contato contato = new Contato();
