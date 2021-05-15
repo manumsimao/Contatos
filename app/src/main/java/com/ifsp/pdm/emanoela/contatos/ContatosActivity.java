@@ -27,7 +27,7 @@ public class ContatosActivity extends AppCompatActivity {
     private ContatosAdapter contatosAdapter;
     private final int NOVO_CONTATO_REQUEST_CODE = 0;
     private final int CALL_PHONE_PREMISSION_REQUEST_CODE = 1;
-
+    private final int EDITAR_CONTATO_REQUEST_CODE = 2;
     private  Contato contato;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,14 @@ public class ContatosActivity extends AppCompatActivity {
         activityContatosBinding.contatosLV.setAdapter(contatosAdapter);
 
         registerForContextMenu(activityContatosBinding.contatosLV);
+
+        activityContatosBinding.contatosLV.setOnItemClickListener((parent, view, position, id) ->{
+            contato = contatosList.get(position);
+            Intent detalhesIntent = new Intent(this, ContatoActivity.class);
+            detalhesIntent.putExtra(Intent.EXTRA_USER, contato);
+            startActivity(detalhesIntent);
+        } );
+
     }
 
     @Override
@@ -49,6 +57,7 @@ public class ContatosActivity extends AppCompatActivity {
         super.onDestroy();
         unregisterForContextMenu(activityContatosBinding.contatosLV);
     }
+
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -74,6 +83,16 @@ public class ContatosActivity extends AppCompatActivity {
             if (contato != null){
                 contatosList.add(contato);
                 contatosAdapter.notifyDataSetChanged();
+            }
+        }else {
+            if (requestCode == EDITAR_CONTATO_REQUEST_CODE && resultCode ==RESULT_OK){
+                Contato contato = (Contato) data.getSerializableExtra(Intent.EXTRA_USER);
+                int posicao = data.getIntExtra(Intent.EXTRA_INDEX, -1);
+                if (contato != null && posicao != -1){
+                    contatosList.remove(posicao);
+                    contatosList.add(posicao, contato);
+                    contatosAdapter.notifyDataSetChanged();
+                }
             }
         }
     }
@@ -110,6 +129,10 @@ public class ContatosActivity extends AppCompatActivity {
             case R.id.detalhesContatoMI:
                 return true;
             case R.id.editarContatoMI:
+                Intent editarContatoIntent = new Intent(this, ContatoActivity.class);
+                editarContatoIntent.putExtra(Intent.EXTRA_USER, contato);
+                editarContatoIntent.putExtra(Intent.EXTRA_INDEX, menuInfo.position);
+                startActivityForResult(editarContatoIntent, EDITAR_CONTATO_REQUEST_CODE);
                 return true;
             case R.id.removerContatoMI:
                 return true;
