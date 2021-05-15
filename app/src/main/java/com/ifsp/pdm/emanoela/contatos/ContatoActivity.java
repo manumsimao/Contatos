@@ -65,6 +65,7 @@ public class ContatoActivity extends AppCompatActivity {
 
         }else {
             getSupportActionBar().setSubtitle("Novo contato");
+            activityContatoBinding.pdfBTN.setVisibility(View.GONE);
         }
     }
 
@@ -76,6 +77,12 @@ public class ContatoActivity extends AppCompatActivity {
         activityContatoBinding.celularCB.setEnabled(ativo);
         activityContatoBinding.celularET.setEnabled(ativo);
         activityContatoBinding.siteET.setEnabled(ativo);
+
+        if(ativo) {
+            activityContatoBinding.pdfBTN.setVisibility(View.GONE);
+        }else {
+            activityContatoBinding.salvarBTN.setVisibility(View.GONE);
+        }
     }
 
     public void onClickButton(View view) {
@@ -107,7 +114,7 @@ public class ContatoActivity extends AppCompatActivity {
     }
 
     private void gerarDocumentoPDF() {
-        View conteudo = activityContatoBinding.getRoot();
+        View conteudo = activityContatoBinding.informacaoLL;
         int largura = conteudo.getWidth();
         int altura = conteudo.getHeight();
 

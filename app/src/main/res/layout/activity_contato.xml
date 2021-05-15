@@ -6,8 +6,11 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".ContatoActivity">
-
-    <LinearLayout
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout android:id="@+id/informacaoLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -37,12 +40,25 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5sp">
 
-        <Spinner
-            android:id="@+id/tipoTelefoneSP"
+        <RadioGroup
+            android:id="@+id/tipoTelefoneRG"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:entries="@array/tipo_telefone" />
+            android:layout_weight="1.5"
+            android:orientation="horizontal"
+            >
+            <RadioButton android:id="@+id/residencialRB"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Residencial"
+                android:checked="true"
+                />
+            <RadioButton android:id="@+id/comercialRB"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Comercial"
+                />
+        </RadioGroup>
 
         <EditText
             android:id="@+id/telefoneET"
@@ -83,6 +99,7 @@
         android:inputType="text"
         android:ems="10"
         android:hint="@string/site_pessoal"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -104,5 +121,5 @@
             android:text="Exportar para PDF"
             app:backgroundTint="@color/purple" />
     </LinearLayout>
-    </LinearLayout>
+</LinearLayout>
 </ScrollView>

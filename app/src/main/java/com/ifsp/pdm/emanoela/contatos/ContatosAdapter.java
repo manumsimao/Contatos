@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+
 import com.ifsp.pdm.emanoela.contatos.databinding.ViewContatoBinding;
 
 import java.util.ArrayList;
@@ -32,7 +33,8 @@ public class ContatosAdapter extends ArrayAdapter<Contato> {
 
             contatoViewHolder = new ContatoViewHolder();
             contatoViewHolder.nomeContatoTV = viewContatoBinding.nomeContatoTv;
-            contatoViewHolder.emailContatoTV =viewContatoBinding.emailContatoTV;
+            contatoViewHolder.emailContatoTV = viewContatoBinding.emailContatoTV;
+            contatoViewHolder.celularContatoTV = viewContatoBinding.celularContatoTV;
 
             convertView.setTag(contatoViewHolder);
         }
@@ -41,6 +43,7 @@ public class ContatosAdapter extends ArrayAdapter<Contato> {
         Contato contato = getItem(position);
         contatoViewHolder.nomeContatoTV.setText(contato.getNome());
         contatoViewHolder.emailContatoTV.setText(contato.getEmail());
+        contatoViewHolder.celularContatoTV.setText(contato.getCelular());
 
         return convertView;
     }
@@ -48,5 +51,6 @@ public class ContatosAdapter extends ArrayAdapter<Contato> {
     private class ContatoViewHolder{
         public TextView nomeContatoTV;
         public TextView emailContatoTV;
+        public TextView celularContatoTV;
     }
 }

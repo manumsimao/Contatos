@@ -126,8 +126,6 @@ public class ContatosActivity extends AppCompatActivity {
                 abrirNavegadorIntent.setData(Uri.parse(contato.getSite()));
                 startActivity(Intent.createChooser(abrirNavegadorIntent, "Ops"));
                 return true;
-            case R.id.detalhesContatoMI:
-                return true;
             case R.id.editarContatoMI:
                 Intent editarContatoIntent = new Intent(this, ContatoActivity.class);
                 editarContatoIntent.putExtra(Intent.EXTRA_USER, contato);
@@ -135,6 +133,8 @@ public class ContatosActivity extends AppCompatActivity {
                 startActivityForResult(editarContatoIntent, EDITAR_CONTATO_REQUEST_CODE);
                 return true;
             case R.id.removerContatoMI:
+                contatosList.remove(contato);
+                contatosAdapter.notifyDataSetChanged();
                 return true;
             default:
                 return false;
